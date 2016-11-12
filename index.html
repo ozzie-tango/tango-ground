@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>PlayGround</title>
+        <link rel="stylesheet" href="mine.css">
+        <script src=" "></script>
+    </head>
+    
+    <body id="insane">
+        <div id="wrapper">
+            <div id="playbox">
+                <p id="first" >playground</p>
+                <button type="button" id="podea"> don't touch </button>
+                <button type="button" id="bkg">Trade</button>
+                <p id="multiple">your words go here</p>
+                <p id="second">your words go here</p>
+                <p id="third">your words go here</p>               
+                <p id="fourth">your words go here</p>
+                <p id="triple">your words go here</p>
+                <p id="fifth">your words go here</p>
+                <p id="sixt">uppercase</p>
+                <div id="party">
+                    <p id="right_b">How much apple juice would you like?</p>
+                    <input id="juice" value="250" />
+                    <button class="full" id="pour">Pour!</button>
+                    <p id="apple">So?</p>
+                </div>
+
+                
+            </div>
+    
+        </div>
+    <script>
+    //first    
+     
+    //console.log( text );
+    var check = "playground";
+    //console.log(check);
+    
+    function dude() {
+        var texts = document.getElementById("first").innerHTML;
+        console.log(texts);
+        if (texts == check) { 
+            console.log('yes // ' + texts );
+            document.getElementById("first").innerHTML="or not"; 
+        }
+        else { 
+            console.log('no // ' + texts );
+            document.getElementById("first").innerHTML="playground"; 
+        }
+    }
+        document.getElementById("podea").addEventListener("click", function(){ dude(); } );
+    
+    //second
+    function myF(x) { 
+        return 10*x;
+    }
+        document.getElementById('second').innerHTML = myF(5);
+    
+    //third
+    function days(name) { 
+        return "Hello" + name;
+    }
+        document.getElementById('third').innerHTML = days('Days');  
+    
+    //fourth
+    var car = { type:"Fiat", model:500, color:"white"}
+    document.getElementById('fourth').innerHTML = car.type + " " + car.model;
+    
+    //fifth
+    var fruit = { type:"apple", 
+                  color:"red", 
+                  name: function() {
+                            return this.color + " " + this.type;
+                  }
+                };
+    document.getElementById('fifth').innerHTML = fruit.name();
+        
+    //sixt
+    function con () {
+        var text = document.getElementById("sixt").innerHTML;
+        document.getElementById("sixt").innerHTML = text.toUpperCase();
+    }
+    con();
+        
+    //seventh
+    function trader() {
+    var street = "#faf",
+        a = street.charCodeAt(1),
+        b = street.charCodeAt(2),
+        c = street.charCodeAt(3),
+        n = Math.floor(Math.random() * 10);
+                
+    if (n <= 3){ 
+console.log(0);
+        if (a != 57 && a <= 101) {a++;}
+        else { a = (a == 57) ? 97:48; }
+        console.log(a);
+    }
+    else if (3 < n && n <= 6) {
+console.log(1);
+        if (b != 57 && b <= 101) {b++;}
+        else { b = (b == 57) ? 97:48; }
+        console.log(b);
+    }
+    else if (6 < n) {
+console.log(2);
+        if (c != 57 && c <= 101) {c++;}
+        else { c = (c == 57) ? 97:48; }
+        console.log(c);
+    }
+    document.getElementById('insane').style.backgroundColor = "#" + String.fromCharCode(a) + String.fromCharCode(b) + String.fromCharCode(c);
+       console.log("here");
+   }
+      document.getElementById("bkg").addEventListener("click", function(){ trader(); } ); 
+
+    
+    //eighth
+    function crows() {
+    var myNumber = 64;
+    document.getElementById("triple").innerHTML = myNumber + " base 10, " + myNumber.toString(16) + " base 16, " + myNumber.toString(8) + " base 8, " + myNumber.toString(2) + " base 2.";
+};
+     crows();
+        
+    //multiple
+    function peanuts() {
+    var qwerty = 2; 
+    var white = " ";
+    while (qwerty != Infinity) {
+        qwerty = qwerty * qwerty;
+        white = white + qwerty + "<br>";
+    }
+    document.getElementById("multiple").innerHTML = white;
+}
+    peanuts();
+
+    //apple
+    function apple() {
+        var juice, cup;
+        juice = document.getElementById('juice').value;
+        cup = (juice <= 250) ? "Tasty!":"It's a mess!";
+        document.getElementById('apple').innerHTML = cup;
+    }
+    document.getElementById("pour").addEventListener("click", function(){ apple(); } );
+        
+    //playing with fire
+        
+    var col = [153, 51, 153];
+    var nj = 0;
+    
+    setInterval(function(){
+        
+        col = grow_color(col);
+        
+        var new_col = col;
+        rgb = 'rgb(' + new_col[0] + ', ' + new_col[1] + ', ' + new_col[2] + ')';
+        rgb_inv = 'rgb(' + (255 - new_col[0]) + ', ' + (255 - new_col[1]) + ', ' + (255 - new_col[2]) + ')';
+    
+        document.getElementsByTagName('div')[1].style.backgroundColor = rgb;
+        document.getElementsByTagName('div')[1].style.color = rgb_inv;
+        //console.log('%c' + ++nj + ' %c' + rgb, 'color:#593', 'color:#38f');
+    }, 50);
+    
+    
+    function grow_color(col){
+        var e = col[0];
+        var f = col[1];
+        var g = col[2];
+        
+        var choise = Math.floor(Math.random() * 3) + 1;
+        switch(choise)
+        {
+            case 1:
+                e += Math.floor(Math.random() * 3) + 1;
+                if( e >= 256) e = 0;
+                return [e,f,g];
+                break;
+            case 2:
+                f ++;
+                if( f >= 256) f = 0;
+                return [e,f,g];
+                break;
+            case 3:
+                g -= Math.floor(Math.random() * 3) + 1;
+                if( g < 0) g = 255;
+                return [e,f,g];
+                break;
+        }
+    }
+
+        
+        
+        
+    </script>
+    
+    </body>
+</html>
